@@ -1,0 +1,23 @@
+# Python cache and generated files
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+datafactory-env/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Raw data must not enter Git history
+data/raw/
+
+# Local secrets
+.env
+
+# Operating system files
+.DS_Store
+Thumbs.db

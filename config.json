@@ -1,0 +1,26 @@
+
+{
+  "api": {
+    "endpoint": "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
+    "method": "GET",
+    "timeout_seconds": 30,
+    "max_retries": 3,
+    "batch_size": 5000
+  },
+  "collection": {
+    "start_date": "2024-01-01T00:00:00",
+    "end_date": "2025-07-01T00:00:00",
+    "scope": {
+      "agency": null,
+      "complaint_type": null,
+      "borough": null
+    }
+  },
+  "paths": {
+    "raw_dir": "data/raw",
+    "curated_dir": "data/curated"
+  },
+  "quality": {
+    "max_quarantine_ratio": 0.05
+  }
+}

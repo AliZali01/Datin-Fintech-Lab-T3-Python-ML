@@ -18,3 +18,6 @@ git diff --cached --check
 
 ## Change Summerize
 git diff --cached --stat
+
+## Create & Switch Branch
+git switch -c feature/http-client

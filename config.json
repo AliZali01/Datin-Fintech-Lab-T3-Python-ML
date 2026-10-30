@@ -12,7 +12,7 @@
     "end_date": "2025-07-01T00:00:00",
     "scope": {
       "agency": null,
-      "complaint_type": null,
+      "complaint_type": "Noise - Residential",
       "borough": null
     }
   },

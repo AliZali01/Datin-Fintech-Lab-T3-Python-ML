@@ -14,6 +14,8 @@ datafactory-env/
 
 # Raw data must not enter Git history
 data/raw/
+data/curated/*
+!data/curated/.gitkeep
 
 # Local secrets
 .env

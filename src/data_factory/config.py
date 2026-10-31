@@ -75,6 +75,16 @@ def load_config(
         raise ConfigurationError(
             "api.max_retries must be a non-negative integer."
         )
+    
+    backoff = api.get("backoff_factor_seconds")
+    if (
+        isinstance(backoff, bool)
+        or not isinstance(backoff, (int, float))
+        or backoff < 0
+    ):
+        raise ConfigurationError(
+            "api.backoff_factor_seconds must be non-negative."
+        )
 
     batch_size = api.get("batch_size")
     if (

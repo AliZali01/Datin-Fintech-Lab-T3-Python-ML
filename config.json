@@ -5,7 +5,8 @@
     "method": "GET",
     "timeout_seconds": 30,
     "max_retries": 3,
-    "batch_size": 5000
+    "batch_size": 5000,
+    "backoff_factor_seconds": 0.5
   },
   "collection": {
     "start_date": "2024-01-01T00:00:00",

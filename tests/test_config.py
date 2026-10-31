@@ -17,6 +17,7 @@ VALID_CONFIG = {
         "timeout_seconds": 30,
         "max_retries": 3,
         "batch_size": 5000,
+        "backoff_factor_seconds": 0.5
     },
     "collection": {
         "start_date": "2024-01-01T00:00:00",
@@ -47,7 +48,10 @@ class TestLoadConfig(unittest.TestCase):
 
     def write_config(self, config=None, raw_text=None):
         if raw_text is not None:
-            self.config_path.write_text(raw_text, encoding="utf-8")
+            self.config_path.write_text(
+                raw_text,
+                encoding="utf-8",
+            )
         else:
             data = self.config if config is None else config
             self.config_path.write_text(
@@ -56,6 +60,15 @@ class TestLoadConfig(unittest.TestCase):
             )
 
         return self.config_path
+
+    def test_backoff_factor_must_be_non_negative(self):
+        self.config["api"]["backoff_factor_seconds"] = -1
+        path = self.write_config()
+
+        with self.assertRaises(ConfigurationError):
+            load_config(path)
+
+        # return self.config_path
 
     def test_loads_valid_configuration(self):
         path = self.write_config()

@@ -1,28 +1,65 @@
-# Python cache and generated files
+# ==============================
+# Python
+# ==============================
 __pycache__/
 *.py[cod]
+*$py.class
 *.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Virtual environments
+# ==============================
+# Virtual Environments
+# ==============================
 .venv/
 venv/
 env/
 datafactory-env/
 
-# Jupyter temporary files
-.ipynb_checkpoints/
+# ==============================
+# Environment Variables / Secrets
+# ==============================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
 
-# Raw data must not enter Git history
-data/raw/
+# ==============================
+# Generated Data
+# ==============================
+data/raw/*
+!data/raw/.gitkeep
+
 data/curated/*
 !data/curated/.gitkeep
 
-# Local secrets
-.env
+# ==============================
+# Generated Reports
+# ==============================
+reports/pipeline/
 
-# Operating system files
+# ==============================
+# Logs
+# ==============================
+*.log
+
+# ==============================
+# IDE
+# ==============================
+.vscode/
+.idea/
+*.swp
+
+# ==============================
+# Operating System
+# ==============================
 .DS_Store
 Thumbs.db
-
-# Generated pipeline reports
-reports/pipeline/
+desktop.ini

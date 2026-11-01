@@ -21,3 +21,6 @@ git diff --cached --stat
 
 ## Create & Switch Branch
 git switch -c feature/http-client
+
+##  کتابخانه‌ای برای محاسبات هندسی و تشخیص قرارگرفتن یک نقطه در محدوده یک چندضلعی است
+pip install shapely

@@ -1,4 +1,3 @@
-
 {
   "api": {
     "endpoint": "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
@@ -7,6 +6,28 @@
     "max_retries": 3,
     "batch_size": 5000,
     "backoff_factor_seconds": 0.5
+  },
+  "population": {
+    "endpoint": "https://api.census.gov/data/2024/acs/acs5",
+    "dataset_year": 2024,
+    "variable": "B01001_001E",
+    "geography": "zip code tabulation area:*",
+    "timeout_seconds": 60,
+    "raw_path": "data/raw/reference/acs_2024_acs5_zcta_population.json",
+    "curated_path": "data/curated/reference/acs_2024_acs5_zcta_population.csv",
+
+    "borough_reference": {
+    "state_fips": "36",
+    "county_to_borough": {
+        "005": "BRONX",
+        "047": "BROOKLYN",
+        "061": "MANHATTAN",
+        "081": "QUEENS",
+        "085": "STATEN ISLAND"
+        },
+    "raw_path": "data/raw/reference/acs_2024_acs5_nyc_borough_population.json",
+    "curated_path": "data/curated/reference/acs_2024_acs5_nyc_borough_population.csv"
+    }
   },
   "collection": {
     "start_date": "2024-01-01T00:00:00",

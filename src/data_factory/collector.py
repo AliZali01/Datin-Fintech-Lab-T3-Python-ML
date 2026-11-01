@@ -108,16 +108,16 @@ class NYC311Collector:
             raise DataValidationError("Invalid checkpoint completed flag.")
 
         return state
-
     def _save_checkpoint(self, state: dict) -> None:
         temporary = self.checkpoint_path.with_name(
             "checkpoint.json.tmp"
         )
 
-        temporary.write_text(
-            json.dumps(state, indent=2),
-            encoding="utf-8",
-        )
+        with temporary.open("w", encoding="utf-8") as file:
+            json.dump(state, file, indent=2)
+            file.write("\n")
+            file.flush()
+            os.fsync(file.fileno())
 
         os.replace(temporary, self.checkpoint_path)
 
@@ -129,10 +129,21 @@ class NYC311Collector:
                     for line in file
                     if line.strip()
                 ]
+
         except (OSError, json.JSONDecodeError) as exc:
             raise DataValidationError(
                 f"Cannot read batch file {path}: {exc}"
             ) from exc
+
+        if not rows:
+            raise DataValidationError(
+                f"Empty batch file: {path}"
+            )
+
+        if len(rows) > self.batch_size:
+            raise DataValidationError(
+                f"Batch exceeds configured batch size: {path}"
+            )
 
         if not all(isinstance(row, dict) for row in rows):
             raise DataValidationError(

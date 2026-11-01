@@ -24,6 +24,27 @@ class FakeClient:
         return self.responses.pop(0)
 
 
+class InterruptingClient:
+
+    def __init__(self):
+        self.calls = []
+
+    def get(self, url, params=None):
+
+        self.calls.append({
+            "url": url,
+            "params": params,
+        })
+
+        if params["$offset"] == 0:
+            return [
+                {"unique_key": "1"},
+                {"unique_key": "2"},
+            ]
+
+        raise RuntimeError("Simulated network interruption")
+
+
 class TestNYC311Collector(unittest.TestCase):
 
     def setUp(self):
@@ -116,6 +137,139 @@ class TestNYC311Collector(unittest.TestCase):
 
         self.assertTrue(result["completed"])
         self.assertEqual(result["records_written"], 0)
+
+    
+    def test_resume_after_real_interruption(self):
+
+        client = InterruptingClient()
+        collector = NYC311Collector(self.config, client)
+
+        with self.assertRaises(RuntimeError):
+            collector.collect()
+
+        # First batch must already be safely checkpointed.
+        state = collector._load_checkpoint()
+
+        self.assertEqual(state["next_offset"], 2)
+        self.assertEqual(state["records_written"], 2)
+
+        # Resume with a new client.
+        second_client = FakeClient([
+            [{"unique_key": "3"}]
+        ])
+
+        resumed = NYC311Collector(
+            self.config,
+            second_client,
+        )
+
+        result = resumed.collect()
+
+        self.assertEqual(
+            second_client.calls[0]["params"]["$offset"],
+            2,
+        )
+
+        self.assertEqual(result["records_written"], 3)
+        self.assertTrue(result["completed"])
+
+
+    def test_recovers_batch_saved_before_checkpoint(self):
+
+        client = FakeClient([
+            [{"unique_key": "3"}]
+        ])
+
+        collector = NYC311Collector(self.config, client)
+
+        collector.batches_dir.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        # Simulate crash after batch write but before checkpoint.
+        batch_path = (
+            collector.batches_dir / "batch_000000000.jsonl"
+        )
+
+        collector._write_batch(
+            batch_path,
+            [
+                {"unique_key": "1"},
+                {"unique_key": "2"},
+            ],
+        )
+
+        result = collector.collect()
+
+        # Existing batch must be reused, not downloaded again.
+        self.assertEqual(len(client.calls), 1)
+
+        self.assertEqual(
+            client.calls[0]["params"]["$offset"],
+            2,
+        )
+
+        self.assertEqual(result["records_written"], 3)
+        self.assertTrue(result["completed"])
+
+
+    def test_completed_collection_is_idempotent(self):
+
+        first_client = FakeClient([
+            [
+                {"unique_key": "1"},
+                {"unique_key": "2"},
+            ],
+            [{"unique_key": "3"}],
+        ])
+
+        collector = NYC311Collector(
+            self.config,
+            first_client,
+        )
+
+        first_result = collector.collect()
+
+        # Running again must not contact the API.
+        second_client = FakeClient([])
+
+        resumed = NYC311Collector(
+            self.config,
+            second_client,
+        )
+
+        second_result = resumed.collect()
+
+        self.assertEqual(first_result, second_result)
+        self.assertEqual(second_client.calls, [])
+
+
+    def test_empty_existing_batch_is_rejected(self):
+
+        client = FakeClient([])
+
+        collector = NYC311Collector(
+            self.config,
+            client,
+        )
+
+        collector.batches_dir.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        batch_path = (
+            collector.batches_dir / "batch_000000000.jsonl"
+        )
+
+        batch_path.write_text("", encoding="utf-8")
+
+        with self.assertRaises(DataValidationError):
+            collector.collect()
+
+        self.assertEqual(client.calls, [])
+
 
 
 if __name__ == "__main__":

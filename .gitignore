@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+DBPerformace-env/
+datafactory-env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Datasets and generated data
+data/
+*.parquet
+*.feather
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database dumps
+*.dump
+*.backup
+*.sql.gz

@@ -24,3 +24,6 @@ git switch -c feature/http-client
 
 ##  کتابخانه‌ای برای محاسبات هندسی و تشخیص قرارگرفتن یک نقطه در محدوده یک چندضلعی است
 pip install shapely
+
+## test
+python -m pytest .\tests -v --tb=short

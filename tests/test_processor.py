@@ -120,37 +120,37 @@ class TestDataProcessor(unittest.TestCase):
         self.assertEqual(report["accepted_records"], 1)
         self.assertEqual(report["duplicate_records"], 0)
 
-def test_quarantine_threshold_stops_processing(self):
-    invalid = make_record(
-        "1001",
-        closed="2023-12-31T23:00:00",
-    )
-
-    self.write_batch([invalid])
-
-    strict_processor = DataProcessor(
-        expected_complaint_type="Noise - Residential",
-        max_quarantine_ratio=0.05,
-    )
-
-    with self.assertRaises(DataValidationError):
-        strict_processor.process(
-            self.batches,
-            self.output,
-            expected_raw_count=1,
+    def test_quarantine_threshold_stops_processing(self):
+        invalid = make_record(
+            "1001",
+            closed="2023-12-31T23:00:00",
         )
 
-    self.assertTrue(
-        (self.output / "quarantine.jsonl").exists()
-    )
+        self.write_batch([invalid])
 
-    self.assertTrue(
-        (self.output / "quality_report.json").exists()
-    )
+        strict_processor = DataProcessor(
+            expected_complaint_type="Noise - Residential",
+            max_quarantine_ratio=0.05,
+        )
 
-    self.assertFalse(
-        (self.output / "accepted.jsonl").exists()
-    )
+        with self.assertRaises(DataValidationError):
+            strict_processor.process(
+                self.batches,
+                self.output,
+                expected_raw_count=1,
+            )
+
+        self.assertTrue(
+            (self.output / "quarantine.jsonl").exists()
+        )
+
+        self.assertTrue(
+            (self.output / "quality_report.json").exists()
+        )
+
+        self.assertFalse(
+            (self.output / "accepted.jsonl").exists()
+        )
     
     def test_malformed_json_is_quarantined(self):
         self.write_batch(["{invalid json"])

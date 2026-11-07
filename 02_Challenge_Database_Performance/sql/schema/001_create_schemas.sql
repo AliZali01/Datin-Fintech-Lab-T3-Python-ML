@@ -1,0 +1,5 @@
+﻿CREATE SCHEMA IF NOT EXISTS olist
+    AUTHORIZATION datafactory_user;
+
+CREATE SCHEMA IF NOT EXISTS nyc311
+    AUTHORIZATION datafactory_user;

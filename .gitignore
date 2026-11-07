@@ -1,65 +1,47 @@
-# ==============================
 # Python
-# ==============================
 __pycache__/
 *.py[cod]
-*$py.class
 *.egg-info/
-build/
-dist/
-.eggs/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .coverage
 htmlcov/
+build/
+dist/
 
-# ==============================
 # Virtual Environments
-# ==============================
-.venv/
-venv/
-env/
-datafactory-env/
+**/.venv/
+**/venv/
+**/env/
+**/datafactory-env/
+**/DBPerformace-env/
 
-# ==============================
-# Environment Variables / Secrets
-# ==============================
+# Secrets
 .env
 .env.*
 !.env.example
 *.pem
 *.key
 
-# ==============================
 # Generated Data
-# ==============================
-data/raw/*
-!data/raw/.gitkeep
+**/data/raw/*
+!**/data/raw/.gitkeep
+**/data/curated/*
+!**/data/curated/.gitkeep
 
-data/curated/*
-!data/curated/.gitkeep
-
-# ==============================
 # Generated Reports
-# ==============================
-reports/pipeline/
+**/reports/pipeline/
 
-# ==============================
 # Logs
-# ==============================
 *.log
 
-# ==============================
 # IDE
-# ==============================
 .vscode/
 .idea/
 *.swp
 
-# ==============================
-# Operating System
-# ==============================
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini

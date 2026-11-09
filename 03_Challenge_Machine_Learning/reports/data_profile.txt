@@ -1,0 +1,126 @@
+
+=================================================================
+DATASET OVERVIEW
+=================================================================
+Rows: 150,000
+Columns: 12
+Duplicate rows: 0
+Duplicate IDs: 0
+
+=================================================================
+DATA TYPES
+=================================================================
+Unnamed: 0                                int64
+SeriousDlqin2yrs                          int64
+RevolvingUtilizationOfUnsecuredLines    float64
+age                                       int64
+NumberOfTime30-59DaysPastDueNotWorse      int64
+DebtRatio                               float64
+MonthlyIncome                           float64
+NumberOfOpenCreditLinesAndLoans           int64
+NumberOfTimes90DaysLate                   int64
+NumberRealEstateLoansOrLines              int64
+NumberOfTime60-89DaysPastDueNotWorse      int64
+NumberOfDependents                      float64
+
+=================================================================
+MISSING VALUES
+=================================================================
+MonthlyIncome         29731
+NumberOfDependents     3924
+
+=================================================================
+TARGET DISTRIBUTION
+=================================================================
+SeriousDlqin2yrs
+0    139974
+1     10026
+
+Percentages:
+SeriousDlqin2yrs
+0    93.32
+1     6.68
+
+=================================================================
+NUMERIC SUMMARY
+=================================================================
+                                         count      mean        std  min    1%       25%       50%       75%      95%        99%        max
+SeriousDlqin2yrs                      150000.0     0.067      0.250  0.0   0.0     0.000     0.000     0.000      1.0      1.000        1.0
+RevolvingUtilizationOfUnsecuredLines  150000.0     6.048    249.755  0.0   0.0     0.030     0.154     0.559      1.0      1.093    50708.0
+age                                   150000.0    52.295     14.772  0.0  24.0    41.000    52.000    63.000     78.0     87.000      109.0
+NumberOfTime30-59DaysPastDueNotWorse  150000.0     0.421      4.193  0.0   0.0     0.000     0.000     0.000      2.0      4.000       98.0
+DebtRatio                             150000.0   353.005   2037.819  0.0   0.0     0.175     0.367     0.868   2449.0   4979.040   329664.0
+MonthlyIncome                         120269.0  6670.221  14384.674  0.0   0.0  3400.000  5400.000  8249.000  14587.6  25000.000  3008750.0
+NumberOfOpenCreditLinesAndLoans       150000.0     8.453      5.146  0.0   0.0     5.000     8.000    11.000     18.0     24.000       58.0
+NumberOfTimes90DaysLate               150000.0     0.266      4.169  0.0   0.0     0.000     0.000     0.000      1.0      3.000       98.0
+NumberRealEstateLoansOrLines          150000.0     1.018      1.130  0.0   0.0     0.000     1.000     2.000      3.0      4.000       54.0
+NumberOfTime60-89DaysPastDueNotWorse  150000.0     0.240      4.155  0.0   0.0     0.000     0.000     0.000      1.0      2.000       98.0
+NumberOfDependents                    146076.0     0.757      1.115  0.0   0.0     0.000     0.000     1.000      3.0      4.000       20.0
+
+=================================================================
+DATA QUALITY CHECKS
+=================================================================
+Invalid target values: 0
+Non-positive ages: 1
+Negative monthly income: 0
+Negative dependents: 0
+
+=================================================================
+DELINQUENCY FREQUENCIES
+=================================================================
+
+NumberOfTime30-59DaysPastDueNotWorse
+NumberOfTime30-59DaysPastDueNotWorse
+1     16033
+2      4598
+3      1754
+4       747
+5       342
+6       140
+7        54
+8        25
+9        12
+10        4
+11        1
+12        2
+13        1
+96        5
+98      264
+
+NumberOfTimes90DaysLate
+NumberOfTimes90DaysLate
+4     291
+5     131
+6      80
+7      38
+8      21
+9      19
+10      8
+11      5
+12      2
+13      4
+14      2
+15      2
+17      1
+96      5
+98    264
+
+NumberOfTime60-89DaysPastDueNotWorse
+NumberOfTime60-89DaysPastDueNotWorse
+0     142396
+1       5731
+2       1118
+3        318
+4        105
+5         34
+6         16
+7          9
+8          2
+9          1
+11         1
+96         5
+98       264
+
+=================================================================
+PROFILE COMPLETED
+=================================================================

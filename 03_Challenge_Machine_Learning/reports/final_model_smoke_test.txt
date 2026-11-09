@@ -1,0 +1,20 @@
+
+FINAL MODEL SMOKE TEST
+======================
+
+Model: Random Forest
+Threshold: 0.7
+Cost ratio FN:FP = 5:1
+
+Features: 23
+Test records: 1000
+Valid probabilities: 1000
+Predicted defaults: 97
+Predicted non-defaults: 903
+
+Probability minimum: 0.027287
+Probability maximum: 0.961979
+Probability mean: 0.295890
+
+Model package: credit_risk_final.joblib
+Status: PASSED

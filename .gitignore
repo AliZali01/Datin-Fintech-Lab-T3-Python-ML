@@ -45,3 +45,10 @@ dist/
 .DS_Store
 Thumbs.db
 desktop.ini
+# Nested challenge secrets and raw datasets
+**/.env
+**/.env.*
+!**/.env.example
+**/data/raw/*
+!**/data/raw/.gitkeep
+**/ML-env/

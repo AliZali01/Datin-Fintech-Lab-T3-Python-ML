@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual Environments
+ML-env/
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Raw datasets
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated data
+data/processed/*
+!data/processed/.gitkeep

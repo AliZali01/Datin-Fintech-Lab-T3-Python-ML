@@ -1,0 +1,9 @@
+QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on modeling_dataset  (cost=0.00..4642.79 rows=93079 width=255) (actual time=0.010..11.062 rows=93079 loops=1)
+   Buffers: shared hit=3712
+ Planning:
+   Buffers: shared hit=227
+ Planning Time: 0.362 ms
+ Execution Time: 13.671 ms
+(6 rows)

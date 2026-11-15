@@ -1,0 +1,15 @@
+{
+    "status": "PASSED",
+    "started_at": "2026-11-15T20:25:05.409051",
+    "finished_at": "2026-11-15T20:25:58.558891",
+    "elapsed_seconds": 53.15,
+    "elapsed_minutes": 0.89,
+    "dataset_records": 93079,
+    "database_execution_ms": 13.671,
+    "database_limit_ms": 500,
+    "pipeline_limit_minutes": 45,
+    "model": "Random Forest",
+    "capacity": 0.1,
+    "model_path": "models/early_warning_model.joblib",
+    "operational_queue": "outputs/top_10pct_followup.csv"
+}

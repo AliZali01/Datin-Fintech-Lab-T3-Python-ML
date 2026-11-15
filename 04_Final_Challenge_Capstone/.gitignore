@@ -1,0 +1,22 @@
+﻿.env
+.env.*
+!.env.example
+
+.venv/
+Capstone-env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+data/raw/*
+!data/raw/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
+
+# Generated datasets - never commit
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep

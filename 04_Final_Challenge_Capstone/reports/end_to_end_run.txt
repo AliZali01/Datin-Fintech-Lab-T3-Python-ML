@@ -1,0 +1,28 @@
+
+END-TO-END PIPELINE REPORT
+================================
+
+Status: PASSED
+
+Started: 2026-11-15 20:25:05.409051
+Finished: 2026-11-15 20:25:58.559415
+
+Elapsed: 53.15 seconds
+Elapsed minutes: 0.89
+
+Dataset records: 93,079
+
+Database execution: 13.671 ms
+Database limit: 500 ms
+
+Model: Random Forest
+Capacity: 10%
+
+Model artifact:
+models/early_warning_model.joblib
+
+Operational queue:
+outputs/top_10pct_followup.csv
+
+================================
+PIPELINE COMPLETED SUCCESSFULLY

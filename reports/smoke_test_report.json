@@ -1,0 +1,14 @@
+{
+  "model": "Random Forest",
+  "test_records": 14774,
+  "selected_orders": 1478,
+  "capacity": 0.1,
+  "risk_score_cutoff": 0.5616081953341818,
+  "roc_auc": 0.6039619082705411,
+  "pr_auc": 0.20173457470910244,
+  "precision_at_10pct": 0.22462787550744248,
+  "recall_at_10pct": 0.21012658227848102,
+  "lift_at_10pct": 2.1004128055360476,
+  "true_positives_in_queue": 332,
+  "total_positive_orders": 1580
+}

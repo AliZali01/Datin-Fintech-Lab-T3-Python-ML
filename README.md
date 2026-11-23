@@ -13,5 +13,5 @@ Projects developed for the Datin Financial Technology Laboratory.
 ### Challenge 03 — Credit Risk Machine Learning
 [Documentation](./03_Challenge_Machine_Learning/README.md)
 
-### Challenge 04
-Coming soon.
+### Final Challenge – Early Warning System
+[Documentation](./04_Final_Challenge_Capstone/README.md)
